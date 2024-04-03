@@ -213,6 +213,19 @@ namespace Calculator_App
 
         private void percentageBtn_Click(object sender, EventArgs e)
         {
+            TxtBox.Text = "0";
+
+            String f, s;
+            f = Convert.ToString(firstValue);
+            s = Convert.ToString(firstValue);
+
+            f = "";
+            s = "";
+
+        }
+
+        private void button33_Click(object sender, EventArgs e)
+        {
             firstValue = decimal.Parse(TxtBox.Text);
             TxtBox.Clear();
             operators = "%";
@@ -220,21 +233,15 @@ namespace Calculator_App
 
 
 
-        //Check code below later
         private void delBtn_Click(object sender, EventArgs e)
         {
-            if (TxtBox.Text == "0")
+            if (TxtBox.Text.Length > 0)
             {
-                TxtBox.Text = "0";
+                TxtBox.Text = TxtBox.Text.Remove(TxtBox.Text.Length - 1, 1);
             }
-            else
-            {
-                for (int i = 0; i < TxtBox.Text.Length; i++)
+            if (TxtBox.Text == "")
                 {
-                    string newValue = TxtBox.Text.Remove(i);
-                    TxtBox.Text = newValue;
-                }
-
+                TxtBox.Text = "0";
             }
         }
 
@@ -243,6 +250,12 @@ namespace Calculator_App
             firstValue = decimal.Parse(TxtBox.Text);
             TxtBox.Text += "^2";
             operators = "square";
+        }
+        private void cubeBtn_Click(object sender, EventArgs e)
+        {
+            firstValue = decimal.Parse(TxtBox.Text);
+            TxtBox.Text += "^3";
+            operators = "cube";
         }
         private void button27_Click(object sender, EventArgs e)
         {
@@ -258,6 +271,19 @@ namespace Calculator_App
             }
 
         }
+        private void button36_Click(object sender, EventArgs e)
+        {
+            testValue = double.Parse(TxtBox.Text);
+            operators = "cbrt";
+
+            switch (operators)
+            {
+                case "cbrt":
+                    result = (decimal)Math.Cbrt(testValue);
+                    TxtBox.Text = result.ToString();
+                    break;
+            }
+        }
         private void button28_Click(object sender, EventArgs e)
         {
             testValue = double.Parse(TxtBox.Text);
@@ -272,7 +298,7 @@ namespace Calculator_App
             TxtBox.Clear();
 
         }
-        private void button33_Click(object sender, EventArgs e)
+        private void cosBtn_Click(object sender, EventArgs e)
         {
             TxtBox.Text = "cos ";
             operators = "cos";
@@ -304,19 +330,63 @@ namespace Calculator_App
         }
         private void piBtn_Click(object sender, EventArgs e)
         {
-            if (TxtBox.Text == "0")
-            {
-                TxtBox.Text = "3.142";
-            }
+            TxtBox.Text = Math.PI.ToString();
         }
 
         private void expBtn_Click(object sender, EventArgs e)
         {
             firstValue = decimal.Parse(TxtBox.Text);
-            TxtBox.Text += "e";
+            TxtBox.Clear();
             operators = "exp";
         }
+        private void opBracketBtn_Click(object sender, EventArgs e)
+        {
+            int a = int.Parse(TxtBox.Text);
+            TxtBox.Text = Convert.ToString(a, 2);
+        }
 
+        private void decimalBtn_Click(object sender, EventArgs e)
+        {
+            double dec = Convert.ToDouble(TxtBox.Text);
+            int i1 = Convert.ToInt32(dec);
+            int i2 = (int)dec;
+            TxtBox.Text = Convert.ToString(i2);
+        }
+        private void hexBtn_Click(object sender, EventArgs e)
+        {
+            int a = int.Parse(TxtBox.Text);
+            TxtBox.Text = Convert.ToString(a, 16);
+        }
+        private void octBtn_Click(object sender, EventArgs e)
+        {
+            int a = int.Parse(TxtBox.Text);
+            TxtBox.Text = Convert.ToString(a, 8);
+        }
+        private void button12_Click(object sender, EventArgs e)
+        {
+            testValue = double.Parse(TxtBox.Text);
+            operators = "percentage";
+
+            switch (operators)
+            {
+                case "percentage":
+                    result = (decimal)testValue / 100;
+                    TxtBox.Text = result.ToString();
+                    break;
+            }
+        }
+
+        private void factorialBtn_Click(object sender, EventArgs e)
+        {
+            firstValue = decimal.Parse(TxtBox.Text);
+            TxtBox.Text += "!";
+            int newNum = 1;
+            for (int i = 1; i <= firstValue; i++)
+            {
+                newNum *= i;
+            }
+            TxtBox.Text = newNum.ToString();
+        }
         private void equalBtn_Click(object sender, EventArgs e)
         {
             switch (operators)
@@ -351,12 +421,16 @@ namespace Calculator_App
                     result = firstValue * firstValue;
                     TxtBox.Text = result.ToString();
                     break;
+                case "cube":
+                    result = firstValue * firstValue * firstValue;
+                    TxtBox.Text = result.ToString();
+                    break;
                 case "inverse":
                     result = (decimal)Math.Pow(testValue, -1);
                     TxtBox.Text = result.ToString();
                     break;
                 case "exp":
-                    double newTestValue = double.Parse(TxtBox.Text.Substring(3));
+                    testValue = double.Parse(TxtBox.Text);
                     result = (decimal)Math.Exp(testValue);
                     TxtBox.Text = result.ToString();
                     break;
