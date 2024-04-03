@@ -19,32 +19,6 @@ namespace Calculator_App
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void button16_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void TxtBox_TextChanged(object sender, EventArgs e)
         {
 
@@ -240,7 +214,7 @@ namespace Calculator_App
                 TxtBox.Text = TxtBox.Text.Remove(TxtBox.Text.Length - 1, 1);
             }
             if (TxtBox.Text == "")
-                {
+            {
                 TxtBox.Text = "0";
             }
         }
@@ -467,6 +441,6 @@ namespace Calculator_App
             }
         }
 
-        
+      
     }
 }
